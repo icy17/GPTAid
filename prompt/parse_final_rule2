@@ -1,0 +1,43 @@
+Given the information provided, please perform a likelihood-based analysis to determine the most probable causes of the error. Subsequently, generate security rules that address these causes. Understand that both the correct and incorrect API calls might have multiple modifications, so consider a range of possibilities and rank them based on their likelihood.
+Target API is: `FUNC_NAME`
+Info 0. Declaration of FUNC_NAME:
+DECLARATION
+
+Info 1. Correct API Call:
+```
+RIGHT_CODE
+```
+
+Info 2. Error Code resulting from a potential security rule violation:
+```
+VIOLATION
+```
+
+Info 3. Error Results of the Run when the rule might be violated:
+ERROR_RE
+
+Steps for Analysis:
+
+1. Enumerate the key differences between the correct(Info 1) and error(Info 2) API calls.
+2. Analyze the possible status of the parameter in the correct code(Info 1).
+If you can determine the possible value of the parameter, then the status is represented by that value, and if you can't determine the possible value, then the status is represented by the operation associated with the parameter (function call sequence)
+3. Analyze the possible status of the parameter in the error code(Info 2).
+Same definition of possible status as the previous step.
+4. Determine the potential root cause of the error based on the error results(Info 3).
+5. For each identified difference, evaluate its probability of being the primary root cause of the error based on the provided error code and Result of the Run.
+6. Rank these causes based on their likelihood.
+7. Analyse which parameter related to the root cause. Answer the index of the parameter, index begin with 1.
+8. For the most probable causes, gesnerate specific security rules to prevent such errors in the future.
+Generate a single parameter-related rule that includes the index(begin with 1) and name of the parameter causing the error, along with specific actions or value to address the ROOT CAUSE effectively.
+The Rule you generate should contain 3 part infomation: 
+    (1)index and name of the parameter
+    (2)What the caller of this API must do to avoid this error
+    (3)What the caller of this API must not do to avoid this error.
+Do not include any information or associations with other error cases in the generated rule.
+
+Please provide the rule in the following format so I can parse your response automatically:
+    A. Security Rule AUTO: "Parameter [INDEX](begin with 1): [what the caller MUST DO]
+    B. Security Rule AUTO_AVOID: "Parameter [INDEX](begin with 1): [what the caller MUST NOT DO]
+    you should replace the content enclosed in square brackets "[ ]" with your answer.
+Explaination: 
+Show me your analyze step following above steps

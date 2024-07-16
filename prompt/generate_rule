@@ -1,0 +1,40 @@
+source code of `FUNC_NAME`:
+```
+SOURCE_CODE
+```
+
+Please analyze the source code of the API `FUNC_NAME` and all the information provided before it. Then, respond with the following tasks:
+
+Task 1: Based on the analysis of the source code, provide a concise description of the functionality of the function.
+
+Task 2: Locate the code related to the Parameter_Info `PARA_NAME`.
+
+Task 3: Identify the security rules that should be observed for the Parameter_Info to prevent misuse of the API `FUNC_NAME`. For each rule, include code snippets that demonstrate a violation of the rule:
+
+1. Please provide detailed and specific descriptions for each rule. Clearly indicate which specific operations relate to the Parameter_Info. If a rule can apply to multiple operations that breach the rule, please make it more specific.
+
+2. Each rule should focus on describing only one behavior if possible. If a rule encompasses multiple behaviors, please break it down into distinct rules.
+
+3. Each rule should correspond to a separate violation code.
+
+4. In cases where you're unsure about certain code details, you can suggest all possible rules, whether accurate or not, based on your knowledge database about potential API misuse.
+
+5. Each violation code should contain at least one call to `FUNC_NAME`
+
+6. Follow this format for each rule: Begin with an Arabic numeral, then describe the rule content (e.g., "1. Rule description"). Provide a corresponding violation code enclosed in triple backticks like this:
+```
+//Violation Code
+```
+Format Example For Each Rule:
+(Note: These examples are provided only for reference and should not influence the format of the responses.)
+1. Rule:
+Violation Code:
+```
+//Violation Code
+```
+1. Rule:
+Violation Code:
+```
+//Violation Code
+```
+

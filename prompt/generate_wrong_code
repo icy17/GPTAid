@@ -1,0 +1,19 @@
+1.Declaration of `FUNC_NAME`:
+```
+DECLARATION_REPLACE
+```
+2.Right Code that calls `FUNC_NAME`:
+```
+RIGHT_CODE_REPLACE
+```
+"""
+
+Based on the above information, please modify the right code to violate this rule:
+RULE_NAME
+Here is an example of a code that VIOLATES the rule; analyze the code to determine how to violate the rule by modifying the right code, as this violation example code indicates. Your modified code must to be **consistent** with the way the example code is violated.
+violation code example:
+```
+VIOLATION
+```
+Please ensure the following conditions are met in your response:
+Generate a complete, compilable code suitable for a Linux environment, including a main function. The code provided should not be a fragment but a complete, executable program.

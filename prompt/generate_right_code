@@ -1,0 +1,19 @@
+Given the following function `FUNC_NAME` in library `LIB_NAME`, Complete the following tasks.
+```
+SOURCE_CODE
+```
+
+Task1: Analyze the function code to find the invocation specification that the caller needs to follow correctly.
+Task2: Generate a complete code that calls the function in Linux. The code needs to meet the following requirements:
+    1.The code is required to be compilable and follow the invocation specification of this function.
+    2.This code needs to be non-interactive and no infinite loops.
+    3.The code needs to check the call status of each API after the API returns(if API status can be checked). If API call fails, return 123 and output error message to infer the cause of the error. Every `printf` need to be different.
+    4. After any `printf`, please flush the stdout. 
+    5. Output: "Calling FUNC_NAME success" after calling `FUNC_NAME` successfully; Output: "Calling FUNC_NAME fail" after the call to `FUNC_NAME` has failed
+    6. Add line: 
+    ```
+    printf("before FUNC_NAME\n")
+    ```
+    before calling `FUNC_NAME`. Make sure that there are no other function calls between this output and the calling to `FUNC_NAME`
+    7. If there are some file read operations in the code, the file name should be `example.xxx` (xxx is file type, please replace 'xxx' to the type the code needs)
+    8. Be sure to output the code in this format: ```code``` 
