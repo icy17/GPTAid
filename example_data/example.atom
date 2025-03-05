@@ -1,0 +1,5 @@
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Example Atom</title>
+  <link>http://www.example.com/atom</link>
+  <updated>2023-05-24T12:00:00Z</updated>
+</feed>

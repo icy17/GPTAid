@@ -1,0 +1,25 @@
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         xmlns:compatibility="http://relaxng.org/ns/compatibility/annotations/1.0"
+         xmlns:example="http://www.example.com">
+
+  <start>
+    <ref name="rootElement"/>
+  </start>
+
+  <define name="rootElement">
+    <element name="root">
+      <attribute name="id">
+        <data type="compatibility:string"/>
+      </attribute>
+      <oneOrMore>
+        <element name="item">
+          <attribute name="name">
+            <data type="compatibility:string"/>
+          </attribute>
+          <text/>
+        </element>
+      </oneOrMore>
+    </element>
+  </define>
+
+</grammar>
