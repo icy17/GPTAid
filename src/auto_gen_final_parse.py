@@ -612,6 +612,7 @@ def generate_fix_wrong_prompt(wrong_cmd, right_prefix, errmsg, prev_msg):
 
 # TODO:
 def run_watch(api, code, compile_cmd):
+    global root_passwd
     run_flag = True
     errmsg = ''
     # write code to out_file file
@@ -633,7 +634,7 @@ def run_watch(api, code, compile_cmd):
         # os.system('rm ' + code_path)
         return False, 'compile', info
     run_cmd1 = './' + api
-    run_cmd = 'echo %s | sudo -S %s' % ('123456', run_cmd1)
+    run_cmd = 'echo %s | sudo -S %s' % (root_passwd, run_cmd1)
     # return_info = subprocess.getstatusoutput(run_cmd)
     return_info = subprocess.Popen(run_cmd, shell=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
     try:
@@ -701,8 +702,9 @@ def compile_code(api, code, compile_cmd):
         return True, 'compile', ''
     
 def run_code(api, code):
+    global root_passwd
     run_cmd1 = './' + api
-    run_cmd = 'echo %s | sudo -S %s' % ('123456', run_cmd1)
+    run_cmd = 'echo %s | sudo -S %s' % (root_passwd, run_cmd1)
     code_path = './' + api + '.c'
     # return_info = subprocess.getstatusoutput(run_cmd)
     return_info = subprocess.Popen(run_cmd, shell=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
@@ -755,6 +757,7 @@ def generate_fix_new_prompt(prev_msg:list, answer_code, error_msg):
 # 3.如果未正确执行但执行成功，返回error-handling
 # return flag, output, error_stage
 def compile_run(code, api, compile_cmd, compile_valgrind_cmd, lib):
+    global root_passwd
     flag = False
     output = ''
     error_stage = 'compile'
@@ -790,7 +793,7 @@ def compile_run(code, api, compile_cmd, compile_valgrind_cmd, lib):
     run_cmd1 = './' + api
     if lib == 'libpcap':
         run_cmd1 = './' + api
-        run_cmd = 'echo %s | sudo -S %s' % ('123456', run_cmd1)
+        run_cmd = 'echo %s | sudo -S %s' % (root_passwd, run_cmd1)
     else:
         run_cmd = './' + api
     # return_info = subprocess.getstatusoutput(run_cmd)
@@ -829,7 +832,7 @@ def compile_run(code, api, compile_cmd, compile_valgrind_cmd, lib):
     clear_env()
     if lib == 'libpcap':
         run_cmd_val = 'valgrind --leak-check=full --quiet ./' + api + '_val'
-        run_cmd = 'echo %s | sudo -S %s' % ('123456', run_cmd_val)
+        run_cmd = 'echo %s | sudo -S %s' % (root_passwd, run_cmd_val)
     else:
         run_cmd = 'valgrind --leak-check=full --quiet ./' + api + '_val'
     
@@ -861,7 +864,7 @@ def compile_run(code, api, compile_cmd, compile_valgrind_cmd, lib):
     clear_env()
     if lib == 'libpcap':
         run_cmd_val = './' + api + '_val'
-        run_cmd = 'echo %s | sudo -S %s' % ('123456', run_cmd_val)
+        run_cmd = 'echo %s | sudo -S %s' % (root_passwd, run_cmd_val)
     else:
         run_cmd = './' + api + '_val'
     # return_info = subprocess.getstatusoutput(run_cmd)
@@ -1312,6 +1315,7 @@ def if_val_same(output_list, api, code_list, name_list, lib):
 
 
 def get_all_err(code, lib, name_prefix):
+    global root_passwd
     name_prefix = './' + name_prefix.split('/')[-1]
     with open(name_prefix + '.c', 'w') as f:
         f.write(code)
@@ -1325,15 +1329,15 @@ def get_all_err(code, lib, name_prefix):
     valgrind_compile = compile_cmd_valgrind.replace('FUNC_NAME', name_prefix) + compile_dict[lib]
     if lib == 'libpcap':
         run_cmd1 = './' + name_prefix
-        asan_run = 'echo %s | sudo -S %s' % ('123456', run_cmd1)
-        orig_run = 'echo %s | sudo -S %s' % ('123456', run_cmd1 + '_val')
+        asan_run = 'echo %s | sudo -S %s' % (root_passwd, run_cmd1)
+        orig_run = 'echo %s | sudo -S %s' % (root_passwd, run_cmd1 + '_val')
     else:
         asan_run = './' + name_prefix
         orig_run = asan_run + '_val'
     
     if lib == 'libpcap':
         run_cmd_val = 'valgrind --leak-check=full --quiet ' + name_prefix + '_val'
-        valgrind_run = 'echo %s | sudo -S %s' % ('123456', run_cmd_val)
+        valgrind_run = 'echo %s | sudo -S %s' % (root_passwd, run_cmd_val)
     else:
         valgrind_run = 'valgrind --leak-check=full --quiet ' + name_prefix + '_val'
     # # print(orig_run)
@@ -2194,7 +2198,7 @@ if __name__ == '__main__':
     api_key = ''
     api_path = '../test_info/api_info/api_list'
     callgraph_path = '../test_info/api_info/call_graph'
-    
+    root_passwd = ''
     out_dir = '../test_info/out_refinement/'
     info_dir = '../test_info/out_wrong_code/'
     # END
